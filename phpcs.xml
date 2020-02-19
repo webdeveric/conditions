@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ruleset name="Eric's Standards">
+  <file>./src/</file>
+  <file>./tests/</file>
+
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+
+  <arg name="colors"/>
+  <arg name="encoding" value="utf-8"/>
+  <arg name="extensions" value="php"/>
+  <arg name="tab-width" value="2"/>
+
+  <rule ref="PSR2"/>
+
+  <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+    <type>error</type>
+  </rule>
+
+  <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+    <type>error</type>
+  </rule>
+
+  <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
+    <type>error</type>
+  </rule>
+
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="200"/>
+      <property name="absoluteLineLimit" value="225"/>
+    </properties>
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+</ruleset>

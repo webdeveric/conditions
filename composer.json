@@ -1,0 +1,62 @@
+{
+  "name": "webdeveric/conditions",
+  "license": "proprietary",
+  "description": "",
+  "keywords": [
+    "conditions"
+  ],
+  "authors": [
+    {
+      "name": "Eric King",
+      "email": "eric@webdeveric.com",
+      "homepage": "http://webdeveric.com",
+      "role": "Developer"
+    }
+  ],
+  "scripts": {
+    "test": "phpunit --colors=always --coverage-text",
+    "md": "phpmd 'src,tests' text phpmd.xml",
+    "phpcbf": "phpcbf",
+    "phpcs": "phpcs",
+    "phpmd": "phpmd",
+    "cs": [
+      "@phpcbf",
+      "@phpcs"
+    ],
+    "pre-commit": [
+      "@cs",
+      "@md",
+      "@test"
+    ],
+    "setup-hooks": [
+      "php -r \"copy('./hooks/pre-commit', '.git/hooks/pre-commit');\"",
+      "php -r \"chmod('.git/hooks/pre-commit', 0700);\""
+    ]
+  },
+  "scripts-descriptions": {
+    "setup-hooks": "Setup the git pre-commit hook"
+  },
+  "autoload": {
+    "psr-4": {
+      "webdeveric\\Conditions\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "webdeveric\\Conditions\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "phpmd/phpmd": "^2.6",
+    "phpunit/phpunit": "^9.0",
+    "squizlabs/php_codesniffer": "^3.0"
+  }
+}
