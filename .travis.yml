@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - '7.2'
+  - '7.3'
+  - '7.4'
+  - nightly
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction
+  - composer dump-autoload -o
+
+script: composer test
