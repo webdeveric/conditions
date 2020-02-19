@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace webdeveric\Conditions\Tests;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use webdeveric\Conditions\BaseConditions;
 
@@ -79,5 +80,34 @@ class BaseConditionsTest extends TestCase
     );
 
     $this->assertFalse($conditions->check());
+  }
+
+  public function testInvoke()
+  {
+    $conditions = new BaseConditions(function () {
+      return true;
+    });
+
+    $this->assertTrue($conditions());
+  }
+
+  public function testExceptionsReturnFalse()
+  {
+    $conditions = new BaseConditions(function () {
+      throw new Exception('fake');
+    });
+
+    $this->assertFalse($conditions->check());
+  }
+
+  public function testCallbacksCanReturnCallbacks()
+  {
+    $conditions = new BaseConditions(function () {
+      return function () {
+        return true;
+      };
+    });
+
+    $this->assertTrue($conditions->check());
   }
 }

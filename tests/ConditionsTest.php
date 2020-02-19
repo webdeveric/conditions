@@ -50,4 +50,13 @@ class ConditionsTest extends TestCase
 
     $this->assertTrue($allTrue->check());
   }
+
+  public function testMixed()
+  {
+    $any = Conditions::any(__NAMESPACE__ . '\returnTrue', __NAMESPACE__ . '\returnFalse');
+    $none = Conditions::none(__NAMESPACE__ . '\returnFalse');
+    $conditions = Conditions::all($any, $none, __NAMESPACE__ . '\returnTrue');
+
+    $this->assertTrue($conditions->check());
+  }
 }
